@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Portfolio de Alexandra Pérez - Artista multidisciplinar: Canto, Doblaje y Locución. Descubre mis demos y talentos.">
+    <meta name="keywords"
+        content="Alexandra Pérez, Canto, Doblaje, Locución, Voz, Artista, Portfolio, Voice Over, Singer, Actress">
+    <meta property="og:title" content="Portfolio Alexandra Pérez - Talentos Pop Art Final">
+    <meta property="og:description" content="Artista multidisciplinar con una voz versátil. Canto, Doblaje y Locución.">
+    <meta property="og:image" content="./doblaje.png">
+    <meta property="og:url" content="https://alexandraperez.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio Alexandra Pérez">
+    <meta name="twitter:description" content="Artista multidisciplinar: Canto, Doblaje y Locución.">
+    <meta name="twitter:image" content="./doblaje.png">
+    <title>Portfolio Alexandra Pérez - Talentos Pop Art Final</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+
+    <style>
+        /* Modern Material Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        /* Final Volume Popup Styling - Unique Class */
+        .volume-popup-final {
+            position: absolute;
+            bottom: 100%;
+            /* aligned to top of button */
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            width: 32px;
+            height: 110px;
+            background: #252525;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .volume-popup-final.active {
+            display: block;
+            animation: fadeIn 0.15s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Rotated Volume Slider - High Specificity */
+        input[type=range].v-slider-final {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 90px !important;
+            /* Logical width = visual height */
+            height: 20px !important;
+            /* Logical height = visual width */
+            transform: translate(-50%, -50%) rotate(-90deg) !important;
+            cursor: pointer !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            -webkit-appearance: none !important;
+        }
+
+        /* Webkit (Chrome, Safari, Edge) */
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 99px;
+            transition: all 0.3s ease;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #af25f4;
+            /* Primary Color */
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -4px;
+            box-shadow: none;
+            transition: transform 0.2s ease;
+        }
+
+        input[type=range]:hover::-webkit-slider-thumb {
+            transform: scale(1.2);
+        }
+
+        input[type=range]:hover::-webkit-slider-runnable-track {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Firefox */
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 99px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            height: 12px;
+            width: 12px;
+            border: none;
+            border-radius: 50%;
+            background: #af25f4;
+            cursor: pointer;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 3D Media Player Capsule */
+        .media-player-capsule {
+            width: 100%;
+            border-radius: 9999px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            /* High Contrast 3D Look */
+            background: linear-gradient(180deg, #3a3a3a 0%, #222222 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            /* Subtle crisp border */
+
+            /* Multi-layer shadow for depth and pop */
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.3),
+                /* Ambient shadow */
+                0 10px 15px rgba(0, 0, 0, 0.5),
+                /* Deep shadow */
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            /* Top edge highlight (bevel) */
+
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .media-player-capsule:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 12px rgba(0, 0, 0, 0.4),
+                0 15px 25px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            border-color: rgba(175, 37, 244, 0.3);
+            /* Primary color hint */
+        }
+
+        /* Custom Select Arrow */
+        .custom-select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23af25f4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+
+        .form-input-text {
+            color: #000 !important;
+            padding-left: 12px !important;
+            /* Explicit standard padding */
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.15s;
+        }
+    </style>
+</head>
+
+<body class="font-display text-white selection:bg-primary/40">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tighter text-white">ALEXANDRA<span
+                    class="text-primary">PÉREZ</span></span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a class="hover:text-primary transition-colors" href="#sobre-mi">Sobre mí</a>
+                <a class="hover:text-primary transition-colors" href="#talentos">Talentos</a>
+                <a class="hover:text-primary transition-colors" href="#demos">Demos</a>
+
+            </div>
+            <a class="bg-primary hover:bg-primary/80 px-6 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20"
+                href="#contacto">CONTRATAR</a>
+        </div>
+    </nav>
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="sobre-mi">
+        <div class="absolute inset-0 bg-radial-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="order-2 md:order-1 reveal">
+                <h1 class="text-6xl md:text-8xl font-bold leading-none mb-6 neon-glow-text">
+                    Alexandra<br /><span class="text-primary">Pérez</span>
+                </h1>
+                <div class="glass-panel p-8 rounded-xl relative">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-primary"></div>
+                    <h2 class="text-primary font-bold uppercase tracking-widest mb-4">Sobre mí</h2>
+                    <div class="text-lg text-gray-300 leading-relaxed italic">
+                        <p class="mb-4">Artista multidisciplinar con una voz versátil y pasión innata por la
+                            interpretación. Mi habilidad abarca el canto en distintos estilos, el doblaje de cualquier
+                            pieza audiovisual y la locución para proyectos de diversa índole.</p>
+                        <p>Mi enfoque combina técnica rigurosa con una gran capacidad para conectar emocionalmente con
+                            la audiencia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 relative reveal reveal-delay-1">
+                <div
+                    class="relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10">
+                    <img alt="Alexandra Pérez" class="w-full h-full object-cover object-top" src="./hero.jpg" />
+                    <div class="absolute inset-0 hero-gradient"></div>
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-dark/50" id="talentos">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Mis <span class="text-primary">Talentos</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group glass-panel rounded-xl overflow-hidden hover:border-primary/50 transition-all reveal">
+                    <div class="h-64 overflow-hidden relative">
+                        <img alt="Canto - Cantante con cabello azul"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            src="./canto.png" />
+                        <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3 flex items-center">
+                            <span class="material-icons mr-2 text-primary">mic_external_on</span> Canto
+                        </h3>
+                        <p class="text-gray-400">Intérprete vocal con amplio registro y dominio en diversos géneros
+                            musicales, aportando emoción y técnica a cada melodía. Compongo mis propias canciones.</p>
+                    </div>
+                </div>
+                <div
+                    class="group glass-panel rounded-xl overflow-hidden hover:border-primary/50 transition-all reveal reveal-delay-1">
+                    <div class="h-64 overflow-hidden relative">
+                        <img alt="Doblaje - Mujer rubia con auriculares en estudio"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            src="./doblaje.png" />
+                        <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3 flex items-center">
+                            <span class="material-icons mr-2 text-primary">theater_comedy</span> Doblaje
+                        </h3>
+                        <p class="text-gray-400">Especialista en caracterización de personajes para animación y cine.
+                            Capacidad para adaptar el tono y la intención a cualquier rol interpretativo.</p>
+                    </div>
+                </div>
+                <div
+                    class="group glass-panel rounded-xl overflow-hidden hover:border-primary/50 transition-all reveal reveal-delay-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img alt="Locución - Mujer con cabello afro y auriculares"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            src="./locucion.png" />
+                        <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3 flex items-center">
+                            <span class="material-icons mr-2 text-primary">record_voice_over</span> Locución
+                        </h3>
+                        <p class="text-gray-400">Voz comercial, corporativa y narrativa. Claridad, dicción perfecta y
+                            una cadencia natural que garantiza que el mensaje llegue con impacto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-dark" id="demos">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Mis <span class="text-primary">Demos</span></h2>
+                <p class="text-gray-400">Escucha una muestra de mi trabajo en las distintas disciplinas</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Audio Demo 1 -->
+                <div
+                    class="group glass-panel p-6 rounded-xl flex flex-col items-center text-center gap-4 border-t-4 border-t-primary hover:border-primary/50 transition-all hover:shadow-2xl hover:shadow-primary/10 reveal">
+                    <div
+                        class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center shrink-0 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons text-3xl text-primary">music_note</span>
+                    </div>
+                    <div class="w-full">
+                        <h4 class="text-lg font-bold mb-1">Demo Musical</h4>
+                        <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Pop y Soul</p>
+
+                        <!-- Design "Material Capsule" Player -->
+                        <div class="media-player-capsule">
+                            <!-- Play Button (Icon Only) -->
+                            <button
+                                class="play-btn text-white hover:text-primary transition-colors flex items-center justify-center shrink-0"
+                                data-id="demo-music">
+                                <span class="material-icons text-2xl">play_arrow</span>
+                            </button>
+
+                            <!-- Time -->
+                            <span class="text-xs font-mono text-gray-400 shrink-0 time-display select-none">00:00</span>
+
+                            <!-- Progress Bar -->
+                            <input type="range" class="progress-slider flex-grow" min="0" max="100" value="0">
+
+                            <!-- Volume (Popup) -->
+                            <div class="relative flex items-center pl-2 border-l border-white/10 ml-2 volume-container">
+                                <button
+                                    class="volume-btn text-gray-400 hover:text-white transition-colors flex items-center justify-center outline-none">
+                                    <span class="material-icons text-sm">volume_up</span>
+                                </button>
+
+                                <div class="volume-popup-final">
+                                    <input type="range" class="v-slider-final" min="0" max="1" step="0.1" value="0.3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Demo -->
+                <div
+                    class="group glass-panel p-6 rounded-xl flex flex-col items-center text-center gap-4 border-t-4 border-t-primary hover:border-primary/50 transition-all hover:shadow-2xl hover:shadow-primary/10 reveal reveal-delay-1">
+                    <div
+                        class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center shrink-0 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons text-3xl text-primary">movie</span>
+                    </div>
+                    <div class="w-full">
+                        <h4 class="text-lg font-bold mb-1">Doblaje</h4>
+                        <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Animación y Ficción</p>
+
+                        <div
+                            class="w-full rounded-xl overflow-hidden shadow-lg shadow-primary/20 ring-1 ring-white/10 mt-1 transition-transform group-hover:scale-[1.02] duration-300">
+                            <video controls class="w-full aspect-video bg-black object-cover">
+                                <source
+                                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                    type="video/mp4">
+                                Tu navegador no soporta el video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audio Demo 2 -->
+                <div
+                    class="group glass-panel p-6 rounded-xl flex flex-col items-center text-center gap-4 border-t-4 border-t-primary hover:border-primary/50 transition-all hover:shadow-2xl hover:shadow-primary/10 reveal reveal-delay-2">
+                    <div
+                        class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center shrink-0 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons text-3xl text-primary">campaign</span>
+                    </div>
+                    <div class="w-full">
+                        <h4 class="text-lg font-bold mb-1">Locución</h4>
+                        <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Comercial y Corporativa</p>
+
+                        <!-- Design "Material Capsule" Player -->
+                        <div class="media-player-capsule">
+                            <!-- Play Button (Icon Only) -->
+                            <button
+                                class="play-btn text-white hover:text-primary transition-colors flex items-center justify-center shrink-0"
+                                data-id="demo-locucion">
+                                <span class="material-icons text-2xl">play_arrow</span>
+                            </button>
+
+                            <!-- Time -->
+                            <span class="text-xs font-mono text-gray-400 shrink-0 time-display select-none">00:00</span>
+
+                            <!-- Progress Bar -->
+                            <input type="range" class="progress-slider flex-grow" min="0" max="100" value="0">
+
+                            <!-- Volume (Popup) -->
+                            <div class="relative flex items-center pl-2 border-l border-white/10 ml-2 volume-container">
+                                <button
+                                    class="volume-btn text-gray-400 hover:text-white transition-colors flex items-center justify-center outline-none">
+                                    <span class="material-icons text-sm">volume_up</span>
+                                </button>
+
+                                <div class="volume-popup-final">
+                                    <input type="range" class="v-slider-final" min="0" max="1" step="0.1" value="0.3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-32 relative overflow-hidden" id="contacto">
+        <div class="absolute inset-0 bg-primary/5"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="text-5xl font-bold mb-8">Hablemos</h2>
+            <p class="text-xl text-gray-400 mb-12">Para contrataciones, colaboraciones o consultas, por favor, rellena
+                el siguiente formulario:</p>
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" action="https://formspree.io/f/mkgqzeyy" method="POST"
+                    class="glass-panel p-8 md:p-12 rounded-2xl flex flex-col gap-6 text-left shadow-2xl shadow-primary/10 border-t-4 border-t-primary">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label for="name"
+                                class="text-sm font-bold uppercase tracking-widest text-gray-300">Nombre</label>
+                            <input type="text" id="name" name="Nombre" required
+                                class="bg-white/90 border border-transparent rounded-lg px-4 pl-[18px] py-3 text-black placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans form-input-text"
+                                placeholder="Tu nombre">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="email"
+                                class="text-sm font-bold uppercase tracking-widest text-gray-300">Email</label>
+                            <input type="email" id="email" name="Correo" required
+                                class="bg-white/90 border border-transparent rounded-lg px-4 pl-[18px] py-3 text-black placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans form-input-text"
+                                placeholder="tucorreo@ejemplo.com">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="subject"
+                            class="text-sm font-bold uppercase tracking-widest text-gray-300">Asunto</label>
+                        <input type="text" id="subject" name="Asunto" required
+                            class="bg-white/90 border border-transparent rounded-lg px-4 pl-[18px] py-3 text-black placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans form-input-text"
+                            placeholder="¿En qué te puedo ayudar?">
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="message"
+                            class="text-sm font-bold uppercase tracking-widest text-gray-300">Mensaje</label>
+                        <textarea id="message" name="Mensaje" rows="5" required
+                            class="bg-white/90 border border-transparent rounded-lg px-4 pl-[18px] py-3 text-black placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans resize-y min-h-[120px] form-input-text"
+                            placeholder="Cuéntame sobre tu proyecto..."></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="mt-4 bg-primary hover:bg-white text-white hover:text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest transition-all shadow-lg shadow-primary/20 flex items-center justify-center group">
+                        <span style="margin-right: 12px;">Enviar Mensaje</span>
+                        <span class="material-icons group-hover:translate-x-1 transition-transform">send</span>
+                    </button>
+
+                    <p class="text-center text-xs text-gray-500 mt-2">
+                        O escríbeme directamente a <a href="mailto:alexandrap.locucion@gmail.com"
+                            class="text-primary hover:underline">alexandrap.locucion@gmail.com</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Success Pop-up -->
+            <div id="success-popup" style="display: none; opacity: 0; transition: opacity 0.3s ease;"
+                class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+                <div id="success-popup-content" style="transform: scale(0.95); transition: transform 0.3s ease;"
+                    class="glass-panel p-10 rounded-2xl text-center max-w-sm mx-6 border-t-4 border-t-primary relative">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-4xl text-primary">check_circle</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">¡Mensaje Enviado!</h3>
+                    <p class="text-gray-300 mb-8">Gracias por contactar. Te responderé lo antes posible.</p>
+                    <button id="close-popup" type="button"
+                        onclick="document.getElementById('success-popup').style.display='none';"
+                        class="bg-primary hover:bg-white text-white hover:text-black px-8 py-3 rounded-full font-bold uppercase tracking-widest transition-all shadow-lg shadow-primary/20 w-full relative z-10">
+                        Aceptar
+                    </button>
+                    <!-- Confetti effect base (optional, simple glow for now) -->
+                    <div class="absolute inset-0 bg-primary/10 blur-3xl -z-10 rounded-2xl"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer class="py-16 border-t border-primary/10 bg-background-dark text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-x-10 gap-y-6 mb-10">
+                <a class="text-gray-400 hover:text-primary transition-all flex items-center gap-2 group"
+                    href="https://www.instagram.com/alexandraprzp/" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 fill-current group-hover:drop-shadow-[0_0_8px_rgba(175,37,244,0.8)]"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.56.216.96.475 1.382.897.422.422.681.822.897 1.382.163.422.358 1.057.412 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.216.56-.475.96-.897 1.382-.422.422-.822.681-1.382.897-.422.163-1.057.358-2.227.412-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.56-.216-.96-.475-1.382-.897-.422-.422-.681-.822-.897-1.382-.163-.422-.358-1.057-.412-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.216-.56.475-.96.897-1.382.422-.422.822-.681 1.382-.897.422-.163 1.057-.358 2.227-.412 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.277.057-2.15.26-2.914.557-.79.307-1.458.718-2.126 1.386s-1.079 1.335-1.386 2.126c-.297.765-.5 1.637-.557 2.914-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.057 1.277.26 2.15.557 2.914.307.79.718 1.458 1.386 2.126s1.335 1.079 2.126 1.386c.765.297 1.637.5 2.914.557 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.057 2.15-.26 2.914-.557.79-.307 1.458-.718 2.126-1.386s1.079-1.335 1.386-2.126c.297-.765.5-1.637.557-2.914.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.057-1.277-.26-2.15-.557-2.914-.307-.79-.718-1.458-1.386-2.126s-1.335-1.079-2.126-1.386c-.765-.297-1.637-.5-2.914-.557-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                        </path>
+                    </svg>
+                    <span class="text-xs font-bold uppercase tracking-widest">Instagram</span>
+                </a>
+                <a class="text-gray-400 hover:text-primary transition-all flex items-center gap-2 group"
+                    href="https://open.spotify.com/intl-es/artist/4KwgxEwuQ10jxSfPk75x2b" target="_blank"
+                    rel="noopener noreferrer">
+                    <svg class="w-6 h-6 fill-current group-hover:drop-shadow-[0_0_8px_rgba(175,37,244,0.8)]"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.098 10.638c-3.868-2.297-10.248-2.508-13.941-1.387-.593.18-1.22-.155-1.399-.748-.18-.593.154-1.22.748-1.4 4.239-1.287 11.285-1.038 15.738 1.605.533.317.708 1.005.392 1.538-.316.533-1.005.709-1.538.392zm-.126 3.403c-.272.44-.847.578-1.287.306-3.156-1.94-7.967-2.502-11.706-1.367-.494.15-1.022-.129-1.172-.623-.15-.494.129-1.022.623-1.172 4.29-1.302 9.605-.659 13.235 1.57.44.271.578.846.307 1.286zm-1.564 3.252c-.223.366-.702.483-1.069.26-2.757-1.685-6.226-2.065-10.312-1.127-.417.096-.833-.162-.93-.578-.096-.417.162-.833.578-.93 4.473-1.024 8.312-.593 11.474 1.338.366.223.483.702.259 1.069h.001zM12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z">
+                        </path>
+                    </svg>
+                    <span class="text-xs font-bold uppercase tracking-widest">Spotify</span>
+                </a>
+                <a class="text-gray-400 hover:text-primary transition-all flex items-center gap-2 group"
+                    href="https://www.youtube.com/@alexandraprzp" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 fill-current group-hover:drop-shadow-[0_0_8px_rgba(175,37,244,0.8)]"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z">
+                        </path>
+                    </svg>
+                    <span class="text-xs font-bold uppercase tracking-widest">YouTube</span>
+                </a>
+            </div>
+            <p class="text-gray-600 text-[10px] sm:text-xs tracking-widest uppercase font-medium">
+                © 2026 Alexandra Pérez • Todos los derechos reservados
+            </p>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
